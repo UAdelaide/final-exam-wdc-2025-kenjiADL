@@ -74,9 +74,8 @@ createApp({
   data() {
     return {
       title: "DOG OF THE DAY",
-      dogImage: ''.
-      dogName: "Sir 
-    }
+      dogImage: ''
+    };
   }
 })
 module.exports = app;
