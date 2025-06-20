@@ -53,7 +53,10 @@ app.post('/login', (req, res) => {
             username: results[0].username,
             role: results[0].role
         };
-    })
-})
+
+        res.json({ role: results[0].role });
+    });
+});
+
 // Export the app instead of listening here
 module.exports = app;
