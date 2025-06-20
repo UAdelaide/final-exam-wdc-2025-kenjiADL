@@ -74,7 +74,8 @@ createApp({
   data() {
     return {
       title: "DOG OF THE DAY",
-      do
+      dogImage: ''.
+      dogName: "Sir 
     }
   }
 })
