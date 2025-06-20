@@ -8,6 +8,7 @@ body {
 
 button {
     background-color: black;
+    color: grey;
     border: 1px solid red;
     cursor: crosshair;
 }
