@@ -67,5 +67,5 @@ api.get('/sqpi/walkers/summary', (req, res) => {
         }
     res.json(results);
     });
-})
+});
 module.exports = app;
