@@ -45,8 +45,9 @@ app.post('/login', (req, res) => {
     db.query(query, [username, password], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error' });
         if (results.length === 0) {
-            return res.status(401)
+            return res.status(401).json({ error: 'Invalid username or password'});
         }
+        
     })
 })
 // Export the app instead of listening here
