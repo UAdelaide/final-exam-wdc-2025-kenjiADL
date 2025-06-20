@@ -59,6 +59,6 @@ app.get('/api/walkrequests/open', (req, res) => {
 });
 
 api.get('/sqpi/walkers/summary', (req, res) => {
-    const sql = 'SELECT u.username AS walker_username, COUNT(r.rating_id) AS total_ratings, ROUND(AVG(r.rating), 1) AS average_rating, SUM(CASE '
+    const sql = 'SELECT u.username AS walker_username, COUNT(r.rating_id) AS total_ratings, ROUND(AVG(r.rating), 1) AS average_rating, SUM(CASE WHEN wr.status = "completed" THEN 1 ELSE 0 END) AS completed_walks
 })
 module.exports = app;
