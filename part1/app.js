@@ -57,4 +57,8 @@ app.get('/api/walkrequests/open', (req, res) => {
         res.json(results);
     });
 });
+
+api.get('/sqpi/walkers/summary', (req, res) => {
+    
+})
 module.exports = app;
