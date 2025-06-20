@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 const db = mysql.createConnection({
-  host: 'r.0.0.1',
+  host: 'root',
   user: 'root',
   password: '',
   database: 'DogWalkService'
