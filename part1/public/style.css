@@ -6,3 +6,11 @@ body {
     padding: 50px;
 }
 
+button {
+    font-size: 32px;
+    padding: 25px;
+    margin: 100px;
+    background-color: lime;
+    border: 3px solid red;
+    cursor: crosshair;
+}
