@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Express</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-</head>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Page Title</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{ title }} </h1>
+            <img src="dogImage" alt = "Dog of the day">
+            <button @click="getDog">Get Dog</button>
+        </div>
 
-<body>
-    <h1>Express</h1>
-    <p>Welcome to Express</p>
-</body>
+        <script src="app.js"></script>
+    </body>
 </html>
