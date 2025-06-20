@@ -62,4 +62,4 @@ VALUES
 ('ken987', 'ken@example.com', 'hashed777', 'owner'),
 ('john489', 'john@example.com', 'hashed911', 'walker');
 
-INSERT INTO
+INSERT INTO Dogs (owner_id, name, size)
