@@ -47,7 +47,10 @@ app.post('/login', (req, res) => {
         if (results.length === 0) {
             return res.status(401).json({ error: 'Invalid username or password'});
         }
-        
+
+        req.session.user = {
+            
+        }
     })
 })
 // Export the app instead of listening here
