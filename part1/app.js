@@ -46,5 +46,8 @@ app.get('/api/dogs', (req, res) => {
   });
 });
 
-app.get('/')
+app.get('/qpi/walkrequests/open', (req, res) => {
+    const sql = '
+    '
+})
 module.exports = app;
