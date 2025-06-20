@@ -3,8 +3,8 @@ body {
 }
 
 #app {
-    background-color: white;
-    color: #white;
+    background-color: magenta;
+    color: white;
     font-family: ComicSans MS, cursive, sans-serif;
     text-align: right;
     padding: 50px;
