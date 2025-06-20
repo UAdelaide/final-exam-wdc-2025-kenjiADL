@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-light">
-  <div id="app" class="container vh-100 d-flex flex-column justify-content-center">
+  <div id="app" class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-4">
         <h1 class="text-center mb-4">{{ heading }}</h1>
@@ -31,6 +31,11 @@
         <p class="text-center text-primary mt-4">{{ message }}</p>
       </div>
     </div>
+
+    <h2 class="text-center my-4">Available Dog Walks</h2>
+
+    <table class="table table-striped">
+    </table>
   </div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
