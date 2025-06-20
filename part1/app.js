@@ -59,6 +59,6 @@ app.get('/api/walkrequests/open', (req, res) => {
 });
 
 api.get('/sqpi/walkers/summary', (req, res) => {
-    
+    const sql = 'SELECT u.username AS walker_username, COUNT(r.rating_id) AS total_ratings'
 })
 module.exports = app;
