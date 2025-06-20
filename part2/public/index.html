@@ -45,7 +45,8 @@
 
       const response = await fetch('/api/users/login', {
         method: 'POST',
-        headers: { 'Content-Type'}
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({})
       })
     })
   </script>
