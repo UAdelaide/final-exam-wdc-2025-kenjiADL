@@ -69,3 +69,5 @@ VALUES
 ((SELECT user_id FROM Users WHERE username = 'ken987'), 'Rocky', 'large'),
 ((SELECT user_id FROM Users WHERE username = 'alice123'), 'Ali', 'medium'),
 ((SELECT user_id FROM Users WHERE username = 'carol123'), 'Jerry', 'small');
+
+INSERT INTO 
