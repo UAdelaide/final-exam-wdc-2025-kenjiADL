@@ -54,7 +54,9 @@
       if (response.ok) {
         if (data.user.role === 'owner') {
           window.location.href = '/owner-dashboard.html';
-        } else if 
+        } else if (data.user.role === 'walker') {
+          window.location.href = '/walker-dashboard'
+        }
         }
       }
     })
