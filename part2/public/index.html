@@ -41,7 +41,9 @@
 
     document.getElementById('loginForm').addEventListener('submit', async (e) => { e.preventDefault();
       const email = document.getElementById('emailInput').value;
-      const password = document.getElementById('passwordInput')
+      const password = document.getElementById('passwordInput').value;
+
+      const response = await fetch('/api/users/login', )
     })
   </script>
 
