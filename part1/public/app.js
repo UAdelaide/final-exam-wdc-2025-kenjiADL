@@ -7,5 +7,12 @@ createApp({
       dogImage: ''
     };
   },
-  
+  mounted() {
+    this.getDog();
+  },
+  methods: {
+    getDog() {
+        
+    }
+  }
 })
