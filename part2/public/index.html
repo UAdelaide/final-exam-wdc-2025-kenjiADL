@@ -38,7 +38,10 @@
     </form>
 
     <p v-if="error" class="text-danger text-center mt-3">{{ error }}</p>
+
+    <p class="text-center text-primary mt-4">{{ message }}</p>
   </div>
+  
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
     const { createApp } = Vue;
