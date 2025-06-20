@@ -6,6 +6,14 @@ const db = mysql.createConnection({
   database: 'DogWalkService'
 });
 
+db.connect((err) => {
+  if (err) {
+    console.error('DB connection failed:', err);
+  }
+  else {
+    console.log('Connected to DB from route file');
+  }
+});
 
 var express = require('express');
 var path = require('path');
