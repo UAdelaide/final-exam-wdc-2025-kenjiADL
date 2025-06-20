@@ -25,3 +25,6 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
+router.get('/api/dogs', (req, res) => {
+  const sql = ''
+})
