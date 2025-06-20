@@ -52,8 +52,9 @@ app.get('/qpi/walkrequests/open', (req, res) => {
     db.query(sql, (err, results) => {
         if (err) {
             console.error(err);
-            return res.status(500).josn({ error: 'Database query failed' })
+            return res.status(500).josn({ error: 'Database query failed' });
         }
-    })
-})
+        res.json(results);
+    });
+});
 module.exports = app;
