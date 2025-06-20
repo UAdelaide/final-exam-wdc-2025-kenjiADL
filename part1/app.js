@@ -68,4 +68,7 @@ app.get('/api/walkers/summary', (req, res) => {
     res.json(results);
     });
 });
+
+const { createApp } = Vue;
+createApp()
 module.exports = app;
