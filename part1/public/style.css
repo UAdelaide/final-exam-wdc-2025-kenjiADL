@@ -13,7 +13,7 @@ body {
 h1 {
     font-family: Papyrus, fantasy;
     font-size: 60px;
-    color: magenta;
+    color: white;
     animation: flicker 0.2s infinite alternate;
     text-transform: uppercase;
     letter-spacing: 5px;
