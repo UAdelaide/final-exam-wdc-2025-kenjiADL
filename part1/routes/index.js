@@ -13,7 +13,10 @@ db.connect((err) => {
   if (err) {
     console.error('DB connection failed:', err);
   }
-})
+  else {
+    console.log('Connected to DB from route file');
+  }
+});
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
