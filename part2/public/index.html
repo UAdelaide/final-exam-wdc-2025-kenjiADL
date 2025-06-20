@@ -41,8 +41,7 @@
 
     <p class="text-center text-primary mt-4">{{ message }}</p>
   </div>
-  
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
     const { createApp } = Vue;
 
@@ -50,6 +49,7 @@
       data() {
         return {
           heading: 'Login',
+          message: 'Welcome to the Dog Walking Service!',
           username: '',
           password: '',
           error: ''
@@ -68,19 +68,16 @@
               })
             });
             const data = await res.json();
-
             if (!res.ok) {
               this.error = data.error || 'Login failed';
               return;
             }
-            if (data.role === 'owner') {
-              window.location = '/owner-dashboard.html';
-            } else {
-              window.location = '/walker-dashboard.html';
-            }
+            window.location = data.role === 'owner'
+              ? '/owner-dashboard.html'
+              : '/walker-dashboard.html';
           } catch (err) {
-            this.error = 'Server error';
             console.error(err);
+            this.error = 'Server error';
           }
         }
       }
@@ -89,5 +86,4 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
