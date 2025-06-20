@@ -7,10 +7,7 @@ body {
 }
 
 button {
-    font-size: 32px;
-    padding: 25px;
-    margin: 100px;
-    background-color: lime;
-    border: 3px solid red;
+    background-color: black;
+    border: 1px solid red;
     cursor: crosshair;
 }
