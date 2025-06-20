@@ -1,6 +1,3 @@
-var express = require('express');
-var router = express.Router();
-
 const mysql = require('mysql2');
 const db = mysql.createConnection({
   host: 'localhost',
@@ -8,6 +5,9 @@ const db = mysql.createConnection({
   password: '',
   database: 'DogWalkService'
 });
+
+var express = require('express');
+var router = express.Router();
 
 db.connect((err) => {
   if (err) {
