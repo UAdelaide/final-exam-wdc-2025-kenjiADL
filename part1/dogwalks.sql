@@ -63,3 +63,5 @@ VALUES
 ('john489', 'john@example.com', 'hashed911', 'walker');
 
 INSERT INTO Dogs (owner_id, name, size)
+VALUES
+((select user_id ))
