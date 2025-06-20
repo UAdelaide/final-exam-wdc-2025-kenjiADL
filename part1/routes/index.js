@@ -26,7 +26,5 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 router.get('/api/dogs', (req, res) => {
-  const sql = '
-  SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs JOIN Users ON Dogs.owner_id = Users.user_id
-  ';
+  const sql = 'SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs JOIN Users ON Dogs.owner_id = Users.user_id';
 })
