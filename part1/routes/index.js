@@ -9,7 +9,11 @@ const db = mysql.createConnection({
   database: 'DogWalkService'
 });
 
-db.connect((err))
+db.connect((err) => {
+  if (err) {
+    console
+  }
+})
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
