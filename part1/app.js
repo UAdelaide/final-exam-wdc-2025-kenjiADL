@@ -51,7 +51,8 @@ app.get('/qpi/walkrequests/open', (req, res) => {
 
     db.query(sql, (err, results) => {
         if (err) {
-            c
+            console.error(err);
+            return res.status(500).josn({ error: 'Database query failed' })
         }
     })
 })
