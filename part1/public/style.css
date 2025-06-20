@@ -10,6 +10,8 @@ h1 {
     font-family: Papyrus, fantasy;
     font-size: 60px;
     color: magenta;
+    animation: flicker 0.2s infinite alternate;
+    text-transform: uppercase;
     
 }
 
