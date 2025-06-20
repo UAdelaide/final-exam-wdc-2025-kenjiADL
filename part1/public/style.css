@@ -18,7 +18,10 @@ h1 {
 button {
     background-color: #111;
     color: #222;
-    border: 1px solid red;
-    cursor: crosshair;
-    text-align: center;
+    border: 5px dotted lime;
+    font-size: 30px;
+    margin-top: 200px;
+    padding: 40px;
+    cursor: help;
+    transform: translateX(400px);
 }
