@@ -11,7 +11,8 @@
 <body class="bg-light">
   <div id="app"
        class="container vh-100 d-flex flex-column justify-content-center">
-
+      <h1 class="text-center mb-4">{{ heading }}</h1>
+      
     <form @submit.prevent="login">
       <div class="form-floating mb-3">
         <input v-model="username" type="text" class="form-control" id="username" placeholder="Username" required>
