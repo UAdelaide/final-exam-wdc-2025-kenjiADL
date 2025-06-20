@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Dog Walking Service</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet">
 </head>
-
 <body class="bg-light">
 
   <div id="app" class="container vh-100 d-flex flex-column justify-content-center" style="max-width:400px">
+    <!-- Reactive heading -->
     <h1 class="text-center mb-4">{{ heading }}</h1>
+
+    <!-- Login form driven by Vue -->
     <form @submit.prevent="login">
       <div class="form-floating mb-3">
-        <input v-model="username" type="text" class="form-control" id="username" placeholder="Username" required>
+        <input
+          v-model="username"
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Username"
+          required>
         <label for="username">Username</label>
       </div>
       <div class="form-floating mb-3">
-        <input v-model="password" type="password" class="form-control" id="password" placeholder="Password" required>
+        <input
+          v-model="password"
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          required>
         <label for="password">Password</label>
       </div>
       <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
+
     <p v-if="error" class="text-danger text-center mt-3">{{ error }}</p>
   </div>
-
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
     const { createApp } = Vue;
+
     createApp({
       data() {
         return {
@@ -52,33 +68,24 @@
             });
             const data = await res.json();
 
-            document.getElementById('loginForm').addEventListener('submit', async (e) => {
-              e.preventDefault();
-              const email = document.getElementById('emailInput').value;
-              const password = document.getElementById('passwordInput').value;
-
-              const response = await fetch('/api/users/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-              });
-
-              const data = awaite response.json();
-
-            if (response.ok) {
-              if (data.user.role === 'owner') {
-                window.location.href = '/owner-dashboard.html';
-              } else if (data.user.role === 'walker') {
-                window.location.href = '/walker-dashboard.html';
-              }
-            } else {
-              alert(data.error || 'Login failed');
+            if (!res.ok) {
+              this.error = data.error || 'Login failed';
+              return;
             }
-          });
+            if (data.role === 'owner') {
+              window.location = '/owner-dashboard.html';
+            } else {
+              window.location = '/walker-dashboard.html';
+            }
+          } catch (err) {
+            this.error = 'Server error';
+            console.error(err);
+          }
+        }
+      }
+    }).mount('#app');
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
 </body>
-
 </html>
