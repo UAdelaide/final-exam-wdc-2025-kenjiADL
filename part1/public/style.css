@@ -20,4 +20,5 @@ button {
     color: #222;
     border: 1px solid red;
     cursor: crosshair;
+    text-align: center;
 }
