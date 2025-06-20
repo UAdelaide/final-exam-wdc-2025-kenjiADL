@@ -40,7 +40,8 @@ app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
 app.post('/login', (req, res) => {
-    
+    const { username, password } = req.body;
+    const query = 'SELECT * FROM '
 })
 // Export the app instead of listening here
 module.exports = app;
