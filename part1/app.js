@@ -47,6 +47,6 @@ app.get('/api/dogs', (req, res) => {
 });
 
 app.get('/qpi/walkrequests/open', (req, res) => {
-    const sql = 'SELECT WalkRequests.request_id, Dogs.name AS dog_name, WalkRequests.requested_time, WalkRequests.'
+    const sql = 'SELECT WalkRequests.request_id, Dogs.name AS dog_name, WalkRequests.requested_time, WalkRequests.duration_minutes, WalkRequests.location, Users.username AS owner_na'
 })
 module.exports = app;
