@@ -57,7 +57,8 @@
           message: 'Welcome to the Dog Walking Service!',
           username: '',
           password: '',
-          error: ''
+          error: '',
+          walks: []
         };
       },
       methods: {
@@ -84,7 +85,19 @@
             console.error(err);
             this.error = 'Server error';
           }
+        },
+        async loadWalks() {
+          try {
+            const res = await fetch('/api/walks');
+            this.walks = await res.json();
+          } catch (err) {
+            console.error('Failed to load walks:', err);
+            // Optionally, show an error message to the user
+          }
         }
+      },
+      mounted() {
+        this.loadWalks();
       }
     }).mount('#app');
   </script>
