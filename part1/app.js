@@ -15,6 +15,17 @@ db.connect((err) => {
   }
 });
 
+router.get('/api/dogs', (req, res) => {
+  const sql = 'SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs JOIN Users ON Dogs.owner_id = Users.user_id';
+  db.query (sql, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Database query failed' });
+    }
+    res.json(results);
+  });
+});
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
