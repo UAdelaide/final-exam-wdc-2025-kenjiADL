@@ -49,8 +49,10 @@ app.post('/login', (req, res) => {
         }
 
         req.session.user = {
-            
-        }
+            id: results[0].user_id,
+            username: results[0].username,
+            role: results[0].role
+        };
     })
 })
 // Export the app instead of listening here
