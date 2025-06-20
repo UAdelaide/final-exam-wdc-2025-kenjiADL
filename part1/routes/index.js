@@ -1,11 +1,3 @@
-const mysql = require('mysql2');
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'DogWalkService'
-});
-
 var express = require('express');
 var router = express.Router();
 

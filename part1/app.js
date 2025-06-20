@@ -1,3 +1,12 @@
+const mysql = require('mysql2');
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'DogWalkService'
+});
+
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -18,3 +27,4 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 module.exports = app;
+
