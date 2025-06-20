@@ -1,4 +1,6 @@
 body {
     background-color: #111;
-    
+    color: #222;
+    font-family: ComicSans MS, cursive, sans-serif;
+    text-align: center
 }
