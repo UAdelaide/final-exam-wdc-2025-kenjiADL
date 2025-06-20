@@ -69,13 +69,4 @@ app.get('/api/walkers/summary', (req, res) => {
     });
 });
 
-const { createApp } = Vue;
-createApp({
-  data() {
-    return {
-      title: "DOG OF THE DAY",
-      dogImage: ''
-    };
-  }
-})
 module.exports = app;
