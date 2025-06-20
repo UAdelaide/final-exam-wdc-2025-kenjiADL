@@ -58,7 +58,7 @@ app.get('/api/walkrequests/open', (req, res) => {
     });
 });
 
-app.get('/sqpi/walkers/summary', (req, res) => {
+app.get('/api/walkers/summary', (req, res) => {
     const sql = 'SELECT u.username AS walker_username, COUNT(r.rating_id) AS total_ratings, ROUND(AVG(r.rating), 1) AS average_rating, SUM(CASE WHEN wr.status = "completed" THEN 1 ELSE 0 END) AS completed_walks FROM Users u LEFT JOIN WalkRaints r ON u.user_id = r.walker_id LEFT JOIN WalkRequests wr ON wr.requested_id = r.request_id WHERE u.role = "walker" GROUP BY u.username';
     db.query(sql, (err, results) => {
         if (err) {
