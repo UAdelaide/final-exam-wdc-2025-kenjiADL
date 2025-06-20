@@ -6,5 +6,6 @@ createApp({
       title: "DOG OF THE DAY",
       dogImage: ''
     };
-  }
+  },
+  
 })
