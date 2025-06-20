@@ -30,7 +30,8 @@ router.get('/api/dogs', (req, res) => {
   db.query (sql, (err, results) => {
     if (err) {
       console.error(err);
-      return res.status(500).json({ error: ""})
+      return res.status(500).json({ error: 'Database query failed' });
     }
+    res.json(results);
   })
 })
