@@ -46,4 +46,5 @@ app.get('/api/dogs', (req, res) => {
   });
 });
 
+app.get('/')
 module.exports = app;
