@@ -38,24 +38,6 @@
     <p v-if="error" class="text-danger text-center mt-3">{{ error }}</p>
   </div>
 
-  <div id="app" class="container py-5">
-    <h1 class="mb-4 text-primary">{{ message }}</h1>
-    <form id="loginForm" class="container my-5" style="max-width: 400px">
-      <h2 class="mb-4 text-center">Login</h2>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="username" placeholder="Username" required>
-        <label for="username">Username</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="password" placeholder="Password" required>
-        <label for="password">Password</label>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Login</button>
-      <p id="loginError" class="text-danger mt-2"></p>
-    </form>
-
-  </div>
-
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
     const { createApp } = Vue;
