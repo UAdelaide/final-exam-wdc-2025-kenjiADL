@@ -23,8 +23,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-module.exports = router;
-
 router.get('/api/dogs', (req, res) => {
   const sql = 'SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username FROM Dogs JOIN Users ON Dogs.owner_id = Users.user_id';
   db.query (sql, (err, results) => {
@@ -35,3 +33,5 @@ router.get('/api/dogs', (req, res) => {
     res.json(results);
   });
 });
+
+module.exports = router;
