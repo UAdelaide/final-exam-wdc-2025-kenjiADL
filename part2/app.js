@@ -42,7 +42,9 @@ app.use('/api/users', userRoutes);
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const query = 'SELECT * FROM Users WHERE username = ? AND password_hash = ?';
-    db.query(query, [])
+    db.query(query, [username, password], (err, results) => {
+        if (err)
+    })
 })
 // Export the app instead of listening here
 module.exports = app;
