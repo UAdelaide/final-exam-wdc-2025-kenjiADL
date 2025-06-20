@@ -35,6 +35,8 @@
       </div>
       <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
+    <p v-if="error" class="text-danger text-center mt-3">{{ error }}</p>
+  </div>
 
   <div id="app" class="container py-5">
     <h1 class="mb-4 text-primary">{{ message }}</h1>
