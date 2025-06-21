@@ -95,22 +95,23 @@
             this.error = 'Server error';
           }
         },
-                                async loadDogs() {
+        async loadDogs() {
           try {
             const res = await fetch('/api/dogs');
-            this.dogs = await res.json();
+            const dogsData = await res.json();
 
-            this.dogs.forEach(dog => {
-              dog.imageUrl = 'https://via.placeholder.com/80x80?text=Loading...';
-            });
+            this.dogs = dogsData.map(dog => ({
+              ...dog,
+              imageUrl: ''
+            }));
 
-            this.dogs.forEach((dog, index) => {
+            for (let i = 0; i < this.dogs.length; i++) {
               fetch("https://dog.ceo/api/breeds/image/random")
                 .then(res => res.json())
                 .then(data => {
-                  this.dogs[index].imageUrl = data.message;
+                  this.dogs[i].imageUrl = data.message;
                 });
-            });
+            }
           } catch (err) {
             console.error('Failed to load dogs:', err);
           }
