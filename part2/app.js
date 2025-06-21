@@ -170,10 +170,12 @@ app.post('/login', (req, res) => {
 });
 
 // Get current logged-in user information
+// Get current logged-in user information
 app.get('/api/users/me', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
   }
+  // Return current user data from session
   res.json({
     id: req.session.user.id,
     username: req.session.user.username,
