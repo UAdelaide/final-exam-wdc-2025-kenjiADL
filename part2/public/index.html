@@ -93,17 +93,21 @@
             this.error = 'Server error';
           }
         },
-        async loadWalks() {
+        async loadDogs() {
           try {
-            const res = await fetch('/api/walks');
-            this.walks = await res.json();
+            const res = await fetch('/api/dogs');
+            this.dogs = await res.json();
+            // Add random dog images to each dog
+            this.dogs.forEach(dog => {
+              dog.imageUrl = `https://dog.ceo/api/breeds/image/random`;
+            });
           } catch (err) {
-            console.error('Failed to load walks:', err);
+            console.error('Failed to load dogs:', err);
           }
         }
       },
       mounted() {
-        this.loadWalks();
+        this.loadDogs();
       }
     }).mount('#app');
   </script>
