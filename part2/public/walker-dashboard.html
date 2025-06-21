@@ -75,7 +75,7 @@
             const res = await fetch(`/api/walks/${requestId}/apply`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ walker_id: currentUserId.value })
+              body: JSON.stringify({ walker_id: currentUserId.value })  // Use dynamic ID
             });
             const result = await res.json();
 
@@ -99,8 +99,8 @@
         }
 
         onMounted(async () => {
-          await getCurrentUser();
-          loadWalkRequests();
+          await getCurrentUser();  // Load user ID first
+          loadWalkRequests();      // Then load walk requests
         });
 
         return {
