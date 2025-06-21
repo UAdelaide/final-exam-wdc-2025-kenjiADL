@@ -66,22 +66,6 @@
       </div>
     </div>
     <p v-else>No walk requests yet.</p>
-
-    <!-- Login form that submits via Vue.js method -->
-    <form @submit.prevent="login">
-      <div class="form-floating mb-3">
-        <input v-model="username" type="text" class="form-control" id="username" placeholder="Username" required>
-        <label for="username">Username</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input v-model="password" type="password" class="form-control" id="password" placeholder="Password" required>
-        <label for="password">Password</label>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Login</button>
-    </form>
-
-    <!-- Display any login errors to the user -->
-    <p v-if="error" class="text-danger text-center mt-3">{{ error }}</p>
   </div>
 
   <script>
@@ -100,8 +84,6 @@
         const walks = ref([]);
         const message = ref('');
         const error = ref('');
-        const username = ref('');
-        const password = ref('');
 
         async function loadDogs() {
           try {
@@ -151,33 +133,6 @@
           window.location.href = '/';
         }
 
-        async function login() {
-          try {
-            const res = await fetch('/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                username: username.value,
-                password: password.value
-              })
-            });
-
-            const data = await res.json();
-
-            if (!res.ok) {
-              error.value = data.error || 'Login failed';
-              return;
-            }
-
-            window.location = data.role === 'owner'
-              ? '/owner-dashboard.html'
-              : '/walker-dashboard.html';
-          } catch (err) {
-            console.error(err);
-            error.value = 'Server error';
-          }
-        }
-
         onMounted(() => {
           loadDogs();
           loadWalks();
@@ -190,10 +145,7 @@
           message,
           error,
           submitWalkRequest,
-          logout,
-          username,
-          password,
-          login
+          logout
         };
       }
     }).mount('#app');
