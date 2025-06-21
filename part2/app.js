@@ -65,7 +65,7 @@ app.get('/api/owner/dogs', (req, res) => {
 });
 
 // Fetch walk requests for the current owner's dogs
-app.get('/api/walks', (req, res) => {
+app.get('/api/owner/walks', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
   }
@@ -76,6 +76,27 @@ app.get('/api/walks', (req, res) => {
                WHERE d.owner_id = ?
                ORDER BY wr.created_at DESC`;
   db.query(sql, [req.session.user.id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Database query failed' });
+    }
+    res.json(results);
+  });
+});
+
+// Fetch all open walk requests for walkers to apply to
+app.get('/api/walks', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+  const sql = `SELECT wr.request_id, d.name as dog_name, d.size, wr.requested_time,
+               wr.duration_minutes, wr.location, wr.status, u.username as owner_name
+               FROM WalkRequests wr
+               JOIN Dogs d ON wr.dog_id = d.dog_id
+               JOIN Users u ON d.owner_id = u.user_id
+               WHERE wr.status = 'open'
+               ORDER BY wr.created_at DESC`;
+  db.query(sql, (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ error: 'Database query failed' });
