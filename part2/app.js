@@ -119,6 +119,18 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Get current logged-in user information
+app.get('/api/users/me', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+  res.json({
+    id: req.session.user.id,
+    username: req.session.user.username,
+    role: req.session.user.role
+  });
+});
+
 // Logout endpoint to destroy session and clear cookies
 app.post('/logout', (req, res) => {
   req.session.destroy((err) => {
