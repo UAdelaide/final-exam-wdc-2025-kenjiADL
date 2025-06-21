@@ -32,23 +32,21 @@
       </div>
     </div>
 
-    <h2 class="text-center my-4">All Registered Dogs</h2>
+    <h2 class="text-center my-4">Available Dog Walks</h2>
 
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Dog Name</th>
-          <th>Size</th>
-          <th>Owner</th>
-          <th>Photo</th>
+          <th>Dog</th>
+          <th>Time</th>
+          <th>Walker</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="dog in dogs" :key="dog.dog_name">
-          <td>{{ dog.dog_name }}</td>
-          <td>{{ dog.size }}</td>
-          <td>{{ dog.owner_username }}</td>
-          <td></td>
+        <tr v-for="walk in walks" :key="walk.request_id">
+          <td>{{ walk.dog_name }}</td>
+          <td>{{ new Date(walk.requested_time).toLocaleString() }}</td>
+          <td>{{ walk.walker_name || 'Unassigned' }}</td>
         </tr>
       </tbody>
     </table>
@@ -65,7 +63,7 @@
           username: '',
           password: '',
           error: '',
-          dogs: []
+          walks: []
         };
       },
       methods: {
@@ -93,18 +91,18 @@
             this.error = 'Server error';
           }
         },
-        async loadDogs() {
+        async loadWalks() {
           try {
-            const res = await fetch('/api/dogs');
-            this.dogs = await res.json();
+            const res = await fetch('/api/walks');
+            this.walks = await res.json();
           } catch (err) {
-            console.error('Failed to load dogs:', err);
+            console.error('Failed to load walks:', err);
             // Optionally, show an error message to the user
           }
         }
       },
       mounted() {
-        this.loadDogs();
+        this.loadWalks();
       }
     }).mount('#app');
   </script>
