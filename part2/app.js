@@ -6,7 +6,6 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, 'public')));
