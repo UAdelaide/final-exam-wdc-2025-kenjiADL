@@ -51,6 +51,7 @@ app.get('/api/dogs', (req, res) => {
   });
 });
 
+// Get dogs that belong to the logged-in owner
 app.get('/api/owner/dogs', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
