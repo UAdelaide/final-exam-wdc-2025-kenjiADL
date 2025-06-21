@@ -46,14 +46,15 @@
         const walks = ref([]);
         const message = ref('');
         const error = ref('');
-        const currentUserId = ref(null);
+        const currentUserId = ref(null);  // Store current walker's ID
 
+        // Get current user ID from session
         async function getCurrentUser() {
           try {
             const res = await fetch('/api/users/me');
             if (!res.ok) throw new Error('Failed to get user info');
             const userData = await res.json();
-            currentUserId.value = userData.id;
+            currentUserId.value = userData.id;  // Store user ID
           } catch (err) {
             error.value = 'Failed to get user information';
           }
