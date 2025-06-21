@@ -51,7 +51,6 @@ app.get('/api/dogs', (req, res) => {
   });
 });
 
-// API endpoint to get owner's dogs
 app.get('/api/owner/dogs', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
@@ -66,7 +65,6 @@ app.get('/api/owner/dogs', (req, res) => {
   });
 });
 
-// API endpoint to get owner's walk requests
 app.get('/api/walks', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
@@ -86,7 +84,6 @@ app.get('/api/walks', (req, res) => {
   });
 });
 
-// API endpoint to create walk request
 app.post('/api/walks', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
@@ -121,5 +118,4 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Export the app instead of listening here
 module.exports = app;

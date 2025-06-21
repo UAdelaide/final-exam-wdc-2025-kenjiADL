@@ -9,9 +9,11 @@
 </head>
 <body class="bg-light">
   <div id="app" class="container py-4">
-    <h1 class="mb-4 text-primary">Owner Dashboard</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="text-primary">Owner Dashboard</h1>
+      <button type="button" class="btn btn-outline-danger">Logout</button>
+    </div>
 
-    <!-- Walk request form -->
     <div class="card mb-4">
       <div class="card-header bg-primary text-white">
         Create New Walk Request
@@ -19,8 +21,11 @@
       <div class="card-body">
         <form @submit.prevent="submitWalkRequest">
           <div class="mb-3">
-            <label class="form-label">Dog ID</label>
-            <input v-model="form.dog_id" type="number" class="form-control" required>
+            <label class="form-label">Select Your Dog</label>
+            <select v-model="form.dog_id" class="form-select" required>
+              <option value="">-- Choose a dog --</option>
+              <option v-for="dog in dogs" :key="dog.dog_id" :value="dog.dog_id">{{ dog.name }} ({{ dog.size }})</option>
+            </select>
           </div>
           <div class="mb-3">
             <label class="form-label">Requested Date & Time</label>
@@ -39,7 +44,6 @@
       </div>
     </div>
 
-    <!-- Success or error messages -->
     <div v-if="message" class="alert alert-info">{{ message }}</div>
     <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
