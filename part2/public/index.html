@@ -20,7 +20,8 @@
             <label for="username">Username</label>
           </div>
           <div class="form-floating mb-3">
-            <input v-model="password" type="password" class="form-control" id="password" placeholder="Password" required>
+            <input v-model="password" type="password" class="form-control" id="password" placeholder="Password"
+              required>
             <label for="password">Password</label>
           </div>
           <button type="submit" class="btn btn-primary w-100">Login</button>
@@ -51,7 +52,8 @@
           <td>{{ dog.size }}</td>
           <td>{{ dog.owner_id }}</td>
           <td>
-            <img :src="dog.imageUrl" alt="Dog photo" width="80" height="80" style="object-fit: cover; border-radius: 8px;">
+            <img :src="dog.imageUrl" alt="Dog photo" width="80" height="80"
+              style="object-fit: cover; border-radius: 8px;">
           </td>
         </tr>
       </tbody>
@@ -73,9 +75,11 @@
         };
       },
       methods: {
+        // Handle login form submission
         async login() {
-          this.error = '';
+          this.error = '';  // Clear previous errors
           try {
+            // Send login request to backend
             const res = await fetch('/login', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -85,15 +89,18 @@
               })
             });
             const data = await res.json();
+
+            // Check if login failed
             if (!res.ok) {
               this.error = data.error || 'Login failed';
               return;
             }
+
+            // Redirect based on user role
             window.location = data.role === 'owner'
               ? '/owner-dashboard.html'
               : '/walker-dashboard.html';
           } catch (err) {
-            console.error(err);
             this.error = 'Server error';
           }
         },
