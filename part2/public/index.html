@@ -104,21 +104,24 @@
             this.error = 'Server error';
           }
         },
+                // Load dogs from database and fetch random images from dog API
         async loadDogs() {
           try {
-            const res = await fetch('/api/dogs');
+            const res = await fetch('/api/dogs');  // Get dogs from our database
             const dogsData = await res.json();
 
+            // Initialize each dog with placeholder image
             this.dogs = dogsData.map(dog => ({
               ...dog,
               imageUrl: 'https://via.placeholder.com/80x80?text=Loading'
             }));
 
+            // Fetch random dog images from dog.ceo API
             for (let i = 0; i < this.dogs.length; i++) {
               fetch("https://dog.ceo/api/breeds/image/random")
                 .then(res => res.json())
                 .then(data => {
-                  this.dogs[i].imageUrl = data.message;
+                  this.dogs[i].imageUrl = data.message;  // Replace with random dog image
                 });
             }
           } catch (err) {
