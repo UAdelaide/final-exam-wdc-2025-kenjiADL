@@ -44,10 +44,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="walk in walks" :key="walk.request_id">
-          <td>{{ walk.dog_name }}</td>
-          <td>{{ new Date(walk.requested_time).toLocaleString() }}</td>
-          <td>{{ walk.walker_name || 'Unassigned' }}</td>
+        <tr v-for="dog in dogs" :key="dog.dog_name">
+          <td>{{ dog.dog_name }}</td>
+          <td>{{ dog.size }}</td>
+          <td>{{ dog.owner_username }}</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -64,7 +65,7 @@
           username: '',
           password: '',
           error: '',
-          walks: []
+          dogs: []
         };
       },
       methods: {
@@ -92,18 +93,18 @@
             this.error = 'Server error';
           }
         },
-        async loadWalks() {
+        async loadDogs() {
           try {
-            const res = await fetch('/api/walks');
-            this.walks = await res.json();
+            const res = await fetch('/api/dogs');
+            this.dogs = await res.json();
           } catch (err) {
-            console.error('Failed to load walks:', err);
+            console.error('Failed to load dogs:', err);
             // Optionally, show an error message to the user
           }
         }
       },
       mounted() {
-        this.loadWalks();
+        this.loadDogs();
       }
     }).mount('#app');
   </script>
