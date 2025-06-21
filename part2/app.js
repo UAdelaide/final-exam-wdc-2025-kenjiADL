@@ -53,7 +53,7 @@ app.get('/api/owner/dogs', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
   }
-  //
+  // Query dogs owned by the current user
   const sql = 'SELECT dog_id, name, size FROM Dogs WHERE owner_id = ?';
   db.query(sql, [req.session.user.id], (err, results) => {
     if (err) {
