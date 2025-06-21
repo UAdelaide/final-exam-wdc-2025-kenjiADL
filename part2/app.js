@@ -66,7 +66,7 @@ app.get('/api/owner/dogs', (req, res) => {
   });
 });
 
-// Fetch all walk requests for the current owner's dogs
+// Fetch walk requests for the current owner's dogs
 app.get('/api/walks', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
