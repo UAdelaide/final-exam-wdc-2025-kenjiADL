@@ -86,7 +86,7 @@ app.get('/api/walks', (req, res) => {
   });
 });
 
-// Create a new walk request from the form data
+// Create new walk request from form data
 app.post('/api/walks', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
