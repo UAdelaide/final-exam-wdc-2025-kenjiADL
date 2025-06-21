@@ -65,7 +65,8 @@
           username: '',
           password: '',
           error: '',
-          walks: []
+          walks: [],
+          dogs: []
         };
       },
       methods: {
@@ -100,10 +101,18 @@
           } catch (err) {
             console.error('Failed to load walks:', err);
           }
+        },
+        async loadDogs() {
+          try {
+            const res = await fetch('/api/dogs');
+            this.dogs = await res.json();
+          } catch (err) {
+            console.error('Failed to load dogs:', err);
+          }
         }
       },
       mounted() {
-        this.loadWalks();
+        this.loadDogs();
       }
     }).mount('#app');
   </script>
