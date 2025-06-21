@@ -114,7 +114,7 @@
 
             if (!res.ok) throw new Error(result.error || 'Error submitting walk request');
 
-            message.value = result.message;
+            message.value = 'Walk request created';
             error.value = '';
             form.value = {
               dog_id: '',
