@@ -65,7 +65,7 @@ app.get('/api/owner/dogs', (req, res) => {
   });
 });
 
-// Fetch walk requests for the current owner's dogs
+// Fetch only OPEN walk requests for the current owner's dogs
 app.get('/api/owner/walks', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
@@ -74,7 +74,7 @@ app.get('/api/owner/walks', (req, res) => {
                wr.duration_minutes, wr.location, wr.status
                FROM WalkRequests wr
                JOIN Dogs d ON wr.dog_id = d.dog_id
-               WHERE d.owner_id = ?
+               WHERE d.owner_id = ? AND wr.status = 'open'
                ORDER BY wr.created_at DESC`;
   db.query(sql, [req.session.user.id], (err, results) => {
     if (err) {
