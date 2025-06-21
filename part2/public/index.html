@@ -51,8 +51,7 @@
           <td>{{ dog.size }}</td>
           <td>{{ dog.owner_id }}</td>
           <td>
-            <img v-if="dog.imageUrl" :src="dog.imageUrl" alt="Dog photo" width="80" height="80" style="object-fit: cover; border-radius: 8px;">
-            <img v-else src="https://via.placeholder.com/80x80?text=Loading" alt="Dog photo" width="80" height="80" style="object-fit: cover; border-radius: 8px;">
+            <img :src="dog.imageUrl" alt="Dog photo" width="80" height="80" style="object-fit: cover; border-radius: 8px;">
           </td>
         </tr>
       </tbody>
