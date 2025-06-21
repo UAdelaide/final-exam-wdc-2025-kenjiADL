@@ -31,11 +31,12 @@ db.connect((err) => {
   }
 });
 
-const walkRoutes = require('./routes/walkRoutes');
-const userRoutes = require('./routes/userRoutes');
+// Routes (disabled to use direct endpoints instead)
+// const walkRoutes = require('./routes/walkRoutes');
+// const userRoutes = require('./routes/userRoutes');
 
-app.use('/api/walks', walkRoutes);
-app.use('/api/users', userRoutes);
+// app.use('/api/walks', walkRoutes);
+// app.use('/api/users', userRoutes);
 
 app.get('/api/dogs', (req, res) => {
   const sql = 'SELECT dog_id, owner_id, name, size FROM Dogs';
