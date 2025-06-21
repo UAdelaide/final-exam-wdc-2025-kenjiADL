@@ -99,7 +99,6 @@
           try {
             const res = await fetch('/api/dogs');
             this.dogs = await res.json();
-            // Add random dog images to each dog
             for (let dog of this.dogs) {
               try {
                 const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
