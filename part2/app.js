@@ -39,6 +39,18 @@ const userRoutes = require('./routes/userRoutes');
 app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
+// API endpoint to get all dogs
+app.get('/api/dogs', (req, res) => {
+  const sql = 'SELECT dog_id, owner_id, name, size FROM Dogs';
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Database query failed' });
+    }
+    res.json(results);
+  });
+});
+
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const query = 'SELECT * FROM Users WHERE username = ? AND password_hash = ?';
