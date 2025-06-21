@@ -77,6 +77,10 @@
           }
         }
 
+        function logout() {
+          window.location.href = '/';
+        }
+
         onMounted(() => {
           loadWalkRequests();
         });
@@ -85,7 +89,8 @@
           walks,
           message,
           error,
-          applyToWalk
+          applyToWalk,
+          logout
         };
       }
     }).mount('#app');
