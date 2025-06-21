@@ -93,7 +93,7 @@
         },
         async loadWalks() {
           try {
-            const res = await fetch('/api/walks');
+            const res = await fetch('/api/walkrequests/open');
             this.walks = await res.json();
           } catch (err) {
             console.error('Failed to load walks:', err);
