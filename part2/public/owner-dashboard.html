@@ -80,9 +80,19 @@
           location: ''
         });
 
+        const dogs = ref([]);
         const walks = ref([]);
         const message = ref('');
         const error = ref('');
+
+        async function loadDogs() {
+          try {
+            const res = await fetch('/api/owner/dogs');
+            dogs.value = await res.json();
+          } catch (err) {
+            error.value = 'Failed to load dogs';
+          }
+        }
 
         async function loadWalks() {
           try {
