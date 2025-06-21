@@ -150,21 +150,25 @@ app.post('/api/walks/:id/apply', (req, res) => {
   });
 });
 
+// Login endpoint that handles user authentication and session creation
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
+    // Query database to find user with matching credentials
     const query = 'SELECT * FROM Users WHERE username = ? AND password_hash = ?';
     db.query(query, [username, password], (err, results) => {
         if (err) return res.status(500).json({ error: 'Database error' });
+
+        // Check if user exists with those credentials
         if (results.length === 0) {
             return res.status(401).json({ error: 'Invalid username or password'});
         }
-
+        // Store user information in session for future requests
         req.session.user = {
             id: results[0].user_id,
             username: results[0].username,
             role: results[0].role
         };
-
+        // Send back user role so frontend can redirect appropriately
         res.json({ role: results[0].role });
     });
 });
