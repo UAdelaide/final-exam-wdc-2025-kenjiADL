@@ -50,7 +50,7 @@
           <td>{{ dog.name }}</td>
           <td>{{ dog.size }}</td>
           <td>{{ dog.owner_id }}</td>
-          <td><img src="https://via.placeholder.com/80x80?text=Dog" :src="dog.imageUrl" alt="Dog photo" width="80" height="80" style="object-fit: cover; border-radius: 8px;"></td>
+          <td><img :src="dog.imageUrl || 'https://via.placeholder.com/80x80?text=Dog'" alt="Dog photo" width="80" height="80" style="object-fit: cover; border-radius: 8px;"></td>
         </tr>
       </tbody>
     </table>
