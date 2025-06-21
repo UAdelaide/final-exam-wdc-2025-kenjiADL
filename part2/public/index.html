@@ -45,10 +45,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="walk in walks" :key="walk.request_id">
-          <td>{{ walk.dog_name }}</td>
-          <td>{{ new Date(walk.requested_time).toLocaleString() }}</td>
-          <td>{{ 'Unassigned' }}</td>
+        <tr v-for="dog in dogs" :key="dog.dog_id">
+          <td>{{ dog.dog_id }}</td>
+          <td>{{ dog.name }}</td>
+          <td>{{ dog.size }}</td>
+          <td>{{ dog.owner_id }}</td>
+          <td><img :src="dog.imageUrl || 'https://via.placeholder.com/80x80?text=Dog'" alt="Dog photo" width="80" height="80" style="object-fit: cover; border-radius: 8px;"></td>
         </tr>
       </tbody>
     </table>
