@@ -10,23 +10,27 @@
 
 <body class="bg-light">
   <div id="app" class="container py-5">
-    <h1 class="text-center mb-4">{{ heading }}</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <h1 class="text-center mb-4">{{ heading }}</h1>
 
-    <form @submit.prevent="login">
-      <div class="form-floating mb-3">
-        <input v-model="username" type="text" class="form-control" id="username" placeholder="Username" required>
-        <label for="username">Username</label>
+        <form @submit.prevent="login">
+          <div class="form-floating mb-3">
+            <input v-model="username" type="text" class="form-control" id="username" placeholder="Username" required>
+            <label for="username">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input v-model="password" type="password" class="form-control" id="password" placeholder="Password" required>
+            <label for="password">Password</label>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+
+        <p v-if="error" class="text-danger text-center mt-3">{{ error }}</p>
+
+        <p class="text-center text-primary mt-4">{{ message }}</p>
       </div>
-      <div class="form-floating mb-3">
-        <input v-model="password" type="password" class="form-control" id="password" placeholder="Password" required>
-        <label for="password">Password</label>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">Login</button>
-    </form>
-
-    <p v-if="error" class="text-danger text-center mt-3">{{ error }}</p>
-
-    <p class="text-center text-primary mt-4">{{ message }}</p>
+    </div>
 
     <h2 class="text-center my-4">Available Dog Walks</h2>
 
@@ -39,6 +43,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr v-for="walk in walks" :key="walk.request_id">
+          <td>{{ walk.dog_name }}</td>
+        </tr>
       </tbody>
     </table>
   </div>
