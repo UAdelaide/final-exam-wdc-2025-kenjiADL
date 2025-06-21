@@ -100,12 +100,10 @@
             const res = await fetch('/api/dogs');
             this.dogs = await res.json();
 
-            // Initialize imageUrl property for each dog
             this.dogs.forEach(dog => {
               dog.imageUrl = 'https://via.placeholder.com/80x80?text=Loading...';
             });
 
-            // Then fetch random dog images
             this.dogs.forEach((dog, index) => {
               fetch("https://dog.ceo/api/breeds/image/random")
                 .then(res => res.json())
