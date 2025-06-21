@@ -122,6 +122,34 @@ app.post('/api/walks', (req, res) => {
   });
 });
 
+// Handle walker application to walk requests
+app.post('/api/walks/:id/apply', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+  const requestId = req.params.id;
+  const { walker_id } = req.body;
+
+  // Insert application
+  const sql1 = 'INSERT INTO WalkApplications (request_id, walker_id) VALUES (?, ?)';
+  db.query(sql1, [requestId, walker_id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Failed to apply for walk' });
+    }
+
+    // Update request status
+    const sql2 = 'UPDATE WalkRequests SET status = ? WHERE request_id = ?';
+    db.query(sql2, ['accepted', requestId], (err2, result2) => {
+      if (err2) {
+        console.error(err2);
+        return res.status(500).json({ error: 'Failed to update request status' });
+      }
+      res.json({ message: 'Application submitted successfully' });
+    });
+  });
+});
+
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const query = 'SELECT * FROM Users WHERE username = ? AND password_hash = ?';
