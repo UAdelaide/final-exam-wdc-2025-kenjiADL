@@ -99,14 +99,16 @@
           try {
             const res = await fetch('/api/dogs');
             this.dogs = await res.json();
+
             for (let dog of this.dogs) {
-              try {
-                const imgRes = await fetch('https://dog.ceo/api/breeds/image/random');
-                const imgData = await imgRes.json();
-                dog.imageUrl = imgData.message;
-              } catch (err) {
-                dog.imageUrl = 'https://via.placeholder.com/80x80?text=Dog';
-              }
+              fetch("https://dog.ceo/api/breeds/image/random")
+                .then(res => res.json())
+                .then(data => {
+                  dog.imageUrl = data.message;
+                })
+                .catch(err => {
+                  dog.imageUrl = 'https://via.placeholder.com/80x80?text=Dog';
+                });
             }
           } catch (err) {
             console.error('Failed to load dogs:', err);
