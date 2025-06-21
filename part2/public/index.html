@@ -46,7 +46,7 @@
         <tr v-for="walk in walks" :key="walk.request_id">
           <td>{{ walk.dog_name }}</td>
           <td>{{ new Date(walk.requested_time).toLocaleString() }}</td>
-          <td>{{ walk.walker_name || 'Unassigned' }}</td>
+          <td>{{ 'Unassigned' }}</td>
         </tr>
       </tbody>
     </table>
@@ -93,7 +93,7 @@
         },
         async loadWalks() {
           try {
-            const res = await fetch('/api/walkrequests/open');
+            const res = await fetch('/api/walks');
             this.walks = await res.json();
           } catch (err) {
             console.error('Failed to load walks:', err);
