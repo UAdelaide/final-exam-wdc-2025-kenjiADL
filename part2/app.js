@@ -118,4 +118,14 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Logout endpoint to destroy session and clear cookies
+app.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to logout' });
+    }
+    res.json({ message: 'Logged out successfully' });
+  });
+});
+
 module.exports = app;
