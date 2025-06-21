@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models/db');
 
-// GET all users (for admin/testing)
+// GET all user
 router.get('/', async (req, res) => {
   try {
     const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST a new user (simple signup)
+// POST a new user
 router.post('/register', async (req, res) => {
   const { username, email, password, role } = req.body;
 
@@ -35,7 +35,7 @@ router.get('/me', (req, res) => {
   res.json(req.session.user);
 });
 
-// POST login (dummy version)
+// POST login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
