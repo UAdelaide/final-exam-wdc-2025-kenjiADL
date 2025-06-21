@@ -51,6 +51,57 @@ app.get('/api/dogs', (req, res) => {
   });
 });
 
+// API endpoint to get owner's dogs
+app.get('/api/owner/dogs', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+  const sql = 'SELECT dog_id, name, size FROM Dogs WHERE owner_id = ?';
+  db.query(sql, [req.session.user.id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Database query failed' });
+    }
+    res.json(results);
+  });
+});
+
+// API endpoint to get owner's walk requests
+app.get('/api/walks', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+  const sql = `SELECT wr.request_id, d.name as dog_name, d.size, wr.requested_time,
+               wr.duration_minutes, wr.location, wr.status
+               FROM WalkRequests wr
+               JOIN Dogs d ON wr.dog_id = d.dog_id
+               WHERE d.owner_id = ?
+               ORDER BY wr.created_at DESC`;
+  db.query(sql, [req.session.user.id], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Database query failed' });
+    }
+    res.json(results);
+  });
+});
+
+// API endpoint to create walk request
+app.post('/api/walks', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+  const { dog_id, requested_time, duration_minutes, location } = req.body;
+  const sql = 'INSERT INTO WalkRequests (dog_id, requested_time, duration_minutes, location) VALUES (?, ?, ?, ?)';
+  db.query(sql, [dog_id, requested_time, duration_minutes, location], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Failed to create walk request' });
+    }
+    res.json({ message: 'Walk request created', request_id: result.insertId });
+  });
+});
+
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const query = 'SELECT * FROM Users WHERE username = ? AND password_hash = ?';
